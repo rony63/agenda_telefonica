@@ -17,7 +17,7 @@ class CreateTelefonesTable extends Migration
             $table->id();
             $table->string('numero');
             $table->string('tipo');
-            $table->foreingnId('contato_id')->constrained('contatos');
+            $table->foreignId('contato_id')->constrained('contatos');
             $table->timestamps();
         });
     }

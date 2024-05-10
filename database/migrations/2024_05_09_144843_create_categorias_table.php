@@ -15,10 +15,7 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('amigos');
-            $table->string('vizinhos');
-            $table->string('parentes');
-            $table->foreignId('contato_id')->constrained('contatos');
+            $table->string('nome');
             $table->timestamps();
         });
     }
