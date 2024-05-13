@@ -16,7 +16,7 @@ class CreateTelefonesTable extends Migration
         Schema::create('telefones', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-            $table->string('tipo');
+            $table->integer('tipo');
             $table->foreignId('contato_id')->constrained('contatos');
             $table->timestamps();
         });
