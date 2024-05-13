@@ -27,7 +27,7 @@ class CategoriaSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'nome' => "Amigo",
+            'nome' => "Cônjuge",
         ]);
     }
 }
