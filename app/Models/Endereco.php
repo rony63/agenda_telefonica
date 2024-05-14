@@ -15,4 +15,6 @@ class Endereco extends Model
     protected $appends = [
 
     ];
+
 }
+
