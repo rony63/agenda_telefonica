@@ -74,7 +74,6 @@ class Contato extends Model
     public function categoriaRelationship()
     {
         return $this->belongsToMany(Categoria::class, 'contato_has_categoria' , 'categoria_id', 'contato_id');
-
     }
     /**
      *
