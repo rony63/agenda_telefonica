@@ -13,9 +13,10 @@ class ContatoController extends Controller
      * @return void
      *
     */
-    public function __construct(Contato $contatos)
+    public function __construct(Contato $contatos, Categoria $categorias)
     {
         $this->contatos = $contatos;
+
     }
 
     /**
@@ -26,7 +27,8 @@ class ContatoController extends Controller
     public function index()
     {
         //
-        $contato = $this->contatos->all();
+        $contatos = $this->contatos->all();
+
         return view('contatos.index', compact('contatos'));
 
     }
@@ -92,7 +94,7 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         //
     }
