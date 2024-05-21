@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Contato;
+use App\Models\Endereco;
+use App\Models\Telefone;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
@@ -16,10 +18,12 @@ class ContatoController extends Controller
     */
     public function __construct(Contato $contatos)
     {
+        $this->tipoTelefones = ['fixo', 'celular'];
         $this->contatos = $contatos;
         $this->enderecos = new Endereco;
         $this->categorias = Categoria::all()->pluck('nome', 'id');
         $this->telefones = new Telefone;
+
 
     }
 
@@ -45,11 +49,12 @@ class ContatoController extends Controller
     public function create()
     {
         //
+        $contato = $this->contatos;
         $categorias = $this->categorias;
         $enderecos = $this->enderecos;
         $telefones = $this->telefones;
 
-        return view('contatos.create', compact('categorias', 'enderecos', 'telefones'));
+        return view('contatos.form', compact('categorias', 'enderecos', 'telefones'));
 
     }
 
@@ -62,6 +67,30 @@ class ContatoController extends Controller
     public function store(Request $request)
     {
         //
+        $contato = $this->contatos->create([
+            'nome' => $request->nome,
+
+        ]);
+
+        $this->enderecos->create([
+            'logradouro' => $request->logradouro,
+            'numero' => $request->numero,
+            'cidade' => $request->cidade,
+            'contato_id' => $contato->id
+        ]);
+
+        $contato->categoriaRelationship()->attach($request->categoria);
+
+        for ($i = 0; $i < count($request->numero); $i++)
+        {
+            $this->telefones->create([
+                'numero' => $request->numero[$i],
+                'contato_id' => $contato->id,
+                'tipo' => $request->tipo[$i]
+            ]);
+        }
+
+        return redirect()->route('contatos.index');
     }
 
     /**
@@ -73,6 +102,14 @@ class ContatoController extends Controller
     public function show($id)
     {
         //
+        $form = 'disabled';
+
+        $contato = $this->contatos->find($id);
+        $categorias = $this->categorias;
+        $telefones = $this->telefones;
+        $tipoTelefone = $this->tipoTelefones;
+
+        return view('contatos.form', compact('contato', 'categorias', 'telefones', 'tipoTelefone','form'));
     }
 
     /**
@@ -84,6 +121,7 @@ class ContatoController extends Controller
     public function edit($id)
     {
         //
+
     }
 
     /**
