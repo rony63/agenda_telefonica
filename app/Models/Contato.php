@@ -8,12 +8,18 @@ class Contato extends Model
 {
     protected $table = 'contatos';
     protected $hidden = [
-
+        'categoriaRelationship',
+        'enderecoRelationship',
+        'telefoneRelationship',
+        'created_at',
+        'updated_at'
     ];
 
 
     protected $appends = [
-
+        'categoria',
+        'endereco',
+        'telefone'
     ];
 
     public function getEnderecoAttribute()
@@ -78,6 +84,5 @@ class Contato extends Model
     /**
      *
      */
-
 }
 

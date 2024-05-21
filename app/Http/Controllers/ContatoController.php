@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Contato;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,12 @@ class ContatoController extends Controller
      * @return void
      *
     */
-    public function __construct(Contato $contatos, Categoria $categorias)
+    public function __construct(Contato $contatos)
     {
         $this->contatos = $contatos;
+        $this->enderecos = new Endereco;
+        $this->categorias = Categoria::all()->pluck('nome', 'id');
+        $this->telefones = new Telefone;
 
     }
 
@@ -41,6 +45,12 @@ class ContatoController extends Controller
     public function create()
     {
         //
+        $categorias = $this->categorias;
+        $enderecos = $this->enderecos;
+        $telefones = $this->telefones;
+
+        return view('contatos.create', compact('categorias', 'enderecos', 'telefones'));
+
     }
 
     /**
