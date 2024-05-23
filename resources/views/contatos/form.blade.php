@@ -10,20 +10,15 @@
             @csrf
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome">
-
-            <label for="telefone">Telefone</label>
-            <input type="text" name="telefone" id="telefone">
-            <select>
-                <option value="1">Celular</option>
-                <option value="2">Fixo</option>
-            </select>
-
-            <label for="telefone">Telefone</label>
-            <input type="text" name="telefone" id="telefone">
-            <select>
-                <option value="1">Celular</option>
-                <option value="2">Fixo</option>
-            </select>
+            @for ($i = 0; $i < 2; $i++)
+                <label for="telefone">Telefone</label>
+                <input type="text" name="telefone[]" id="telefone">
+                <select name="tipoTelefone[]">
+                    @foreach ($tipoTelefones as $key => $tipoTelefone)
+                    <option value={{$key}}>{{$tipoTelefone}}</option>
+                    @endforeach
+                </select>
+            @endfor
 
             <label for="logradouro">Logradouro</label>
             <input type="logradouro" name="logradouro" id="logradouro">
@@ -34,36 +29,13 @@
             <label for="numero">Número</label>
             <input type="text" name="numero" id="numero">
 
-            <p>Grau de parentesco</p>
-            <label>Pais
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Irmão(ã)
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Primo(a)
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Tio(a)
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Avô(ó)
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Amigo(a)
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <label>Outro
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            
+            <p>Categoria</p>
+            @foreach ( $categorias as $key => $categoria )
+                <label>{{$categoria}}
+                    <input type="checkbox" value="{{$key}}" name="categoria[]" >
+                    <span class="checkmark"></span>
+                </label>
+            @endforeach
             <button type="submit">Salvar</button>
         </form>
     </body>

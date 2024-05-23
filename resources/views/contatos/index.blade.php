@@ -15,6 +15,7 @@
                 <th>Número</th>
                 <th>Categoria</th>
             </tr>
+            {{-- {{dd($contatos[3]->endereco->logradouro)}} --}}
             @foreach ( $contatos as $contato)
                 <tr>
                     <td>{{$contato->nome}}</td>

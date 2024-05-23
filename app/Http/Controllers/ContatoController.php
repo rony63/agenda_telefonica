@@ -18,7 +18,7 @@ class ContatoController extends Controller
     */
     public function __construct(Contato $contatos)
     {
-        $this->tipoTelefones = ['fixo', 'celular'];
+        $this->tipoTelefones = [1 => 'fixo', 2 => 'celular'];
         $this->contatos = $contatos;
         $this->enderecos = new Endereco;
         $this->categorias = Categoria::all()->pluck('nome', 'id');
@@ -65,6 +65,7 @@ class ContatoController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
         $contato = $this->contatos->create([
             'nome' => $request->nome,
 
@@ -77,14 +78,16 @@ class ContatoController extends Controller
             'contato_id' => $contato->id
         ]);
 
+        // dd($request);
+
         $contato->categoriaRelationship()->attach($request->categoria);
 
-        for ($i = 0; $i < count($request->numero); $i++)
+        for ($i = 0; $i < count($request->telefone); $i++)
         {
             $this->telefones->create([
-                'numero' => $request->numero[$i],
+                'numero' => $request->telefone[$i],
                 'contato_id' => $contato->id,
-                'tipo' => $request->tipo[$i]
+                'tipo' => $request->tipoTelefone[$i],
             ]);
         }
 

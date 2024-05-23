@@ -22,6 +22,10 @@ class Contato extends Model
         'telefone'
     ];
 
+    protected $fillable = [
+        'nome',
+    ];
+
     public function getEnderecoAttribute()
     {
         return $this->enderecoRelationship;
