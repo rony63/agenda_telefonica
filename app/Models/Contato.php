@@ -63,7 +63,7 @@ class Contato extends Model
      */
     public function enderecoRelationship()
     {
-        return $this->belongsTo(Endereco::class, 'contato_id');
+        return $this->hasOne(Endereco::class, 'contato_id');
     }
     /**
      * Ele retorna o relacionamento com a tabela de telefones
@@ -79,7 +79,7 @@ class Contato extends Model
      */
     public function categoriaRelationship()
     {
-        return $this->belongsToMany(Categoria::class, 'contato_has_categoria' , 'categoria_id', 'contato_id');
+        return $this->belongsToMany(Categoria::class, 'contato_has_categoria' , 'contato_id', 'categoria_id');
     }
     /**
      *

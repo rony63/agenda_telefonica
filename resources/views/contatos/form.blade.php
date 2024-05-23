@@ -13,9 +13,17 @@
 
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone">
+            <select>
+                <option value="1">Celular</option>
+                <option value="2">Fixo</option>
+            </select>
 
             <label for="telefone">Telefone</label>
             <input type="text" name="telefone" id="telefone">
+            <select>
+                <option value="1">Celular</option>
+                <option value="2">Fixo</option>
+            </select>
 
             <label for="logradouro">Logradouro</label>
             <input type="logradouro" name="logradouro" id="logradouro">
@@ -26,6 +34,36 @@
             <label for="numero">Número</label>
             <input type="text" name="numero" id="numero">
 
+            <p>Grau de parentesco</p>
+            <label>Pais
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Irmão(ã)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Primo(a)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Tio(a)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Avô(ó)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Amigo(a)
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            <label>Outro
+                <input type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+            
             <button type="submit">Salvar</button>
         </form>
     </body>
