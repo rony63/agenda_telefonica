@@ -14,6 +14,7 @@
                 <th>Cidade</th>
                 <th>Número</th>
                 <th>Categoria</th>
+                <th>Ações</th>
             </tr>
             {{-- {{dd($contatos[3]->endereco->logradouro)}} --}}
             @foreach ( $contatos as $contato)
@@ -34,6 +35,7 @@
                             {{$categoria->nome}}
                         @endforeach
                     </td>
+                    <td><a href="{{route('contatos.show', $contato->id)}}">Visualizar</a></td>
 
                 </tr>
             @endforeach
