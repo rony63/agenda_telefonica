@@ -138,6 +138,8 @@ class ContatoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
+
         $contato = $this->contatos->find($id);
         $endereco = $contato->endereco;
 
@@ -153,12 +155,12 @@ class ContatoController extends Controller
 
         $contato->categoriaRelationship()->sync($request->categoria);
 
-        for ($i = 0; $i < count($request->numero); $i++)
+        for ($i = 0; $i < count($request->telefone); $i++)
         {
-            $contato->telefones->get($i)->update([
-                'numero' => $request->numero[$i],
+            $contato->telefone->get($i)->update([
+                'numero' => $request->telefone[$i],
                 'contato_id' => $contato->id,
-                'tipo' => $request->tipo[$i]
+                'tipo' => $request->tipoTelefone[$i]
             ]);
         }
 

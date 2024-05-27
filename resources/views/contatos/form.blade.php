@@ -7,7 +7,8 @@
     </head>
     <body>
         @isset($contato)
-            <form action="{{route('contatos.update', $contato->id)}}" method="put">
+            <form action="{{route('contatos.update', $contato->id)}}" method="POST">
+            @method("PUT")
         @else
             <form action="{{route('contatos.store')}}" method="post">
         @endisset
@@ -18,7 +19,7 @@
             @for ($i = 0; $i < 2; $i++)
                 <label for="telefone">Telefone</label>
                 <input type="text" name="telefone[]" id="telefone" value="{{isset($contato) && isset($contato->telefone[$i]) ? $contato->telefone[$i]->numero : null}}" {{isset($form) ? $form : null}}>
-                <select name="tipoTelefone[]">
+                <select name="tipoTelefone[]" {{isset($form) ? $form : null}}>
                     @foreach ($tipoTelefones as $key => $tipoTelefone)
                     <option value={{$key}} {{isset($contato) && isset($contato->telefone[$i]) &&  $contato->telefone[$i]->tipo == $key ? 'selected' : null }}>{{$tipoTelefone}}</option>
                     @endforeach
@@ -41,7 +42,7 @@
                     <span class="checkmark"></span>
                 </label>
             @endforeach
-            
+
             @if(empty($form))
                 <button type="submit">Salvar</button>
             @endif
