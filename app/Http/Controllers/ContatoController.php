@@ -125,7 +125,7 @@ class ContatoController extends Controller
         $contato = $this->contatos->find($id);
         $categorias = $this->categorias;
         $tipoTelefones = $this->tipoTelefones;
-        return view('contatos.form', compact('contato', 'categorias', 'telefones', 'tipoTelefones'));
+        return view('contatos.form', compact('contato', 'categorias', 'tipoTelefones'));
 
     }
 
