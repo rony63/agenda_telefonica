@@ -82,10 +82,12 @@ class ContatoController extends Controller
 
         $contato->categoriaRelationship()->attach($request->categoria);
 
-        for ($i = 0; $i < count($request->telefone); $i++)
+        $telefones_fil = array_filter($request->telefone);
+        // dd($telefones_fil);
+        for ($i = 0; $i < count(array_filter($request->telefone)); $i++)
         {
             $this->telefones->create([
-                'numero' => $request->telefone[$i],
+                'numero' => $telefones_fil[$i],
                 'contato_id' => $contato->id,
                 'tipo' => $request->tipoTelefone[$i],
             ]);
@@ -136,12 +138,14 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, $id)
     {
         //dd($request->all());
-
         $contato = $this->contatos->find($id);
         $endereco = $contato->endereco;
+
 
         $endereco->update([
             'logradouro' => $request->logradouro,
@@ -155,13 +159,26 @@ class ContatoController extends Controller
 
         $contato->categoriaRelationship()->sync($request->categoria);
 
+
+        // dd($contato->telefone[2] == null);
+        
         for ($i = 0; $i < count($request->telefone); $i++)
         {
-            $contato->telefone->get($i)->update([
-                'numero' => $request->telefone[$i],
-                'contato_id' => $contato->id,
-                'tipo' => $request->tipoTelefone[$i]
-            ]);
+            if(empty($contato->telefone[$i]))
+            {
+                $this->telefones->create([
+                    'numero' => $request->telefone[$i],
+                    'contato_id' => $contato->id,
+                    'tipo' => $request->tipoTelefone[$i],
+                ]);
+            }
+            else{
+                $contato->telefone->get($i)->update([
+                    'numero' => $request->telefone[$i],
+                    'contato_id' => $contato->id,
+                    'tipo' => $request->tipoTelefone[$i]
+                ]);
+            }
         }
 
         return redirect()->route('contatos.show', $contato->id);
