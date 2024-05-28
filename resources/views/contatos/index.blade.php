@@ -17,49 +17,50 @@
                 <table class="w-full divide-y divide-gray-200">
                     <thead class="bg-gray-200">
                         <tr>
-                            <th class="px-6 py-3 text-left text">Nome</th>
-                            <th>Telefone</th>
-                            <th>Logradouro</th>
-                            <th>Cidade</th>
-                            <th>Número</th>
-                            <th>Categoria</th>
-                            <th>Ações</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Nome</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Telefone</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Logradouro</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Cidade</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Número</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Categoria</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-grady-500 uppercase tracking-wider">Ações</th>
                         </tr>
                     </thead>
 
                     {{-- {{dd($contatos[3]->endereco->logradouro)}} --}}
-                    @foreach ( $contatos as $contato)
-                        <tr>
-                            <td>{{$contato->nome}}</td>
-                            <td>
-                                @foreach ( $contato->telefone as $telefone)
-                                    {{$telefone->numero}}
-                                    {{$telefone->tipo}}
-                                @endforeach
-                            </td>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ( $contatos as $contato)
+                            <tr>
+                                <td>{{$contato->nome}}</td>
+                                <td>
+                                    @foreach ( $contato->telefone as $telefone)
+                                        {{$telefone->numero}}
+                                        {{$telefone->tipo}}
+                                    @endforeach
+                                </td>
 
-                            <td>{{$contato->endereco->logradouro}}</td>
-                            <td>{{$contato->endereco->cidade}}</td>
-                            <td>{{$contato->endereco->numero}}</td>
-                            <td>
-                                @foreach ( $contato->categoria as $categoria )
-                                    {{$categoria->nome}}
-                                @endforeach
-                            </td>
-                            <td><a href="{{route('contatos.show', $contato->id)}}">Visualizar</a></td>
-                            <td>
-                                <form action="/destroy/{{ $contato->id }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit">Deletar</button>
-                                </form>
-                            </td>
+                                <td>{{$contato->endereco->logradouro}}</td>
+                                <td>{{$contato->endereco->cidade}}</td>
+                                <td>{{$contato->endereco->numero}}</td>
+                                <td>
+                                    @foreach ( $contato->categoria as $categoria )
+                                        {{$categoria->nome}}
+                                    @endforeach
+                                </td>
+                                <td><a href="{{route('contatos.show', $contato->id)}}">Visualizar</a></td>
+                                <td>
+                                    <form action="/destroy/{{ $contato->id }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit">Deletar</button>
+                                    </form>
+                                </td>
 
-                            <td><a href="{{route('contatos.edit', $contato->id)}}">Editar</a></td>
+                                <td><a href="{{route('contatos.edit', $contato->id)}}">Editar</a></td>
 
-                        </tr>
-                    @endforeach
-
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
