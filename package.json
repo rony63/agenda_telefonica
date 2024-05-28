@@ -10,9 +10,21 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.19",
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    }
+        "postcss": "^8.4.38",
+        "tailwindcss": "^3.4.3"
+    },
+    "name": "agenda_telefonica",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.mix.js",
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }

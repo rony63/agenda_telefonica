@@ -8,12 +8,22 @@ class Contato extends Model
 {
     protected $table = 'contatos';
     protected $hidden = [
-
+        'categoriaRelationship',
+        'enderecoRelationship',
+        'telefoneRelationship',
+        'created_at',
+        'updated_at'
     ];
 
 
     protected $appends = [
+        'categoria',
+        'endereco',
+        'telefone'
+    ];
 
+    protected $fillable = [
+        'nome',
     ];
 
     public function getEnderecoAttribute()
@@ -57,7 +67,7 @@ class Contato extends Model
      */
     public function enderecoRelationship()
     {
-        return $this->belongsTo(Endereco::class, 'contato_id');
+        return $this->hasOne(Endereco::class, 'contato_id');
     }
     /**
      * Ele retorna o relacionamento com a tabela de telefones
@@ -73,11 +83,10 @@ class Contato extends Model
      */
     public function categoriaRelationship()
     {
-        return $this->belongsToMany(Categoria::class, 'contato_has_categoria' , 'categoria_id', 'contato_id');
+        return $this->belongsToMany(Categoria::class, 'contato_has_categoria' , 'contato_id', 'categoria_id');
     }
     /**
      *
      */
-
 }
 
