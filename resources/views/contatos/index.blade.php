@@ -6,13 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body>
-        <div>
-            <h1>Contatos</h1>
-            <h1 class="text-3xl font-bold underline">
-                Hello world!
-              </h1>
-                <table >
+    <body class="bg-gray-200 p-5">
+        <div class="">
+            <div>
+                <h1 class="text-lg leading-6 font-medium text-gray-900">
+                    Contatos
+                </h1>
+            </div>
+            <table class="table-auto">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -61,5 +62,6 @@
             </table>
         </div>
         <button><a href="{{route('contatos.create')}}">Novo</a></button>
+
     </body>
 </html>
