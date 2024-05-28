@@ -36,6 +36,13 @@ class EnderecoSeeder extends Seeder
             'contato_id' => 3,
         ]);
 
-        
+        DB::table('enderecos')->insert([
+            'logradouro' => "Rua 4",
+            'numero' => "14",
+            'cidade' => "Glória",
+            'contato_id' => 4,
+        ]);
+
+
     }
 }
